@@ -1,0 +1,37 @@
+plugins {
+    id 'org.springframework.boot' version '2.7.5'
+    id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+    id 'java'
+}
+
+group = 'com.gaurang.test'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.flywaydb:flyway-core'
+    compileOnly 'org.projectlombok:lombok'
+    runtimeOnly 'org.postgresql:postgresql'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.flywaydb:flyway-core'
+    testImplementation 'org.flywaydb.flyway-test-extensions:flyway-spring-test:7.0.0'
+    testImplementation 'io.zonky.test:embedded-database-spring-test:2.1.2'
+    testImplementation 'io.zonky.test:embedded-postgres:2.0.0'
+    testImplementation 'io.zonky.test.postgres:embedded-postgres-binaries-linux-arm64v8:14.5.0'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}

@@ -1,0 +1,46 @@
+spring:
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: false
+    properties:
+      hibernate:
+        generate_statistics: false
+        jdbc:
+          batch_size: 30
+        order_inserts: true
+        order_updates: true
+        batch_versioned_data: true
+        show_sql: true
+        format_sql: true
+        hbm2ddl:
+          auto: validate
+        cache:
+          use_query_cache: false
+          use_second_level_cache: false
+          generate_statistics: false
+          use_structured_entries: false
+    hibernate:
+      ddl-auto: validate
+  flyway:
+    schemas: orders
+    default-schema: orders
+
+logging:
+  pattern:
+    file: '%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n'
+    console: '%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n'
+  level:
+    '*': WARN
+    org:
+      springframework:
+        jdbc: INFO
+        transaction: INFO
+        orm: INFO
+      hibernate: ERROR
+    io:
+      zonky: INFO
+
+zonky:
+  test:
+    database:
+      provider: zonky
